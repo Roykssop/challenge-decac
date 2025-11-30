@@ -3,8 +3,8 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductWithDolarDto } from '../dtos/ProductWithDolarResponse.dto';
 import { ProductsFinder } from '../../application/ProductsFinder';
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('productos')
+@Controller('productos')
 export class ProductGetController {
   constructor(private readonly productsFinder: ProductsFinder) { }
 

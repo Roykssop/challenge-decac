@@ -14,8 +14,8 @@ import { ProductNoEncontradoException } from '../../domain/exceptions/ProductNoE
 import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions/InvalidArgument.exception';
 import { ParseIntPipeCustomMsg } from 'src/contexts/catalog/shared/infrastructure/pipes/ParseIntPipeCustomMsg.pipe';
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('productos')
+@Controller('productos')
 export class ProductDeleteController {
   constructor(private readonly productDeleter: ProductDeleter) { }
 
