@@ -29,6 +29,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       PORT: 3000
+      PRECIO_USD: ${PRECIO_USD}
     ports:
       - '${API_EXPOSED_PORT}:3000'
     healthcheck:
