@@ -25,6 +25,15 @@ export class MysqlProductRepository implements ProductRepository {
     return await this.findById(new ProductId(newId));
   }
 
+  async update(product: Product): Promise<void> {
+    const { id, nombre, descripcion, precio } = product.toPrimitives();
+
+    await this.mysqlProvider.query<ResultSetHeader>(
+      'UPDATE productos SET nombre = ?, descripcion = ?, precio = ? WHERE id = ?',
+      [nombre, descripcion, precio, id],
+    );
+  }
+
   async findById(id: ProductId): Promise<Nullable<Product>> {
     const [rows] = await this.mysqlProvider.query<RowDataPacket[]>(
       'SELECT * FROM productos WHERE id = ?',

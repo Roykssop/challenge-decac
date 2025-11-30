@@ -57,4 +57,19 @@ export class Product {
       updatedAt: this.updatedAt.value.toISOString(),
     };
   }
+
+  cambiarNombre(nombre: ProductNombre): void {
+    if (this.nombre.equalsTo(nombre)) return;
+    this.nombre = nombre;
+  }
+
+  cambiarDescripcion(descripcion: ProductDescripcion): void {
+    if (this.descripcion.equalsTo(descripcion)) return;
+    this.descripcion = descripcion;
+  }
+
+  cambiarPrecio(precio: ProductPrecio): void {
+    if (this.precio.equalsTo(precio)) return;
+    this.precio = precio;
+  }
 }

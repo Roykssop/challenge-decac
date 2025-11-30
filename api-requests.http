@@ -2,7 +2,7 @@ POST http://localhost:3311/products
 Content-Type: application/json
 
 {
-  "nombre": "Producto de Prueba 3",
+  "nombre": "Producto de Prueba",
   "descripcion": "Esta es una descripción del producto de prueba.",
   "precio": 20000
 }
@@ -15,3 +15,12 @@ GET http://localhost:3311/products
 
 ### Delete Product
 DELETE http://localhost:3311/products/1
+
+### Update Product
+PUT http://localhost:3311/products/1
+Content-Type: application/json
+
+{
+  "nombre": "Producto de Prueba",
+  "precio": 25000
+}
