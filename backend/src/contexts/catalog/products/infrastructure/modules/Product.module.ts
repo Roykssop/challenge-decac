@@ -10,6 +10,8 @@ import { ProductsFinder } from '../../application/ProductsFinder';
 import { ProductGetController } from '../controllers/ProductGet.controller';
 import { ProductDeleter } from '../../application/ProductDeleter';
 import { ProductDeleteController } from '../controllers/ProductDelete.controller';
+import { ProductDetailsUpdater } from '../../application/ProductDetailsUpdater';
+import { ProductPutController } from '../controllers/ProductPut.controller';
 
 const ProductRepository = {
   provide: 'ProductRepository',
@@ -25,12 +27,14 @@ const ProductRepository = {
     ProductUsdPriceConverter,
     ProductsFinder,
     ProductDeleter,
+    ProductDetailsUpdater,
   ],
   controllers: [
     ProductPostController,
     ProductGetByIdController,
     ProductGetController,
     ProductDeleteController,
+    ProductPutController,
   ],
 })
 export class ProductModule { }
