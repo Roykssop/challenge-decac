@@ -1,4 +1,4 @@
-POST http://localhost:3311/products
+POST http://localhost:3001/products
 Content-Type: application/json
 
 {
@@ -8,16 +8,16 @@ Content-Type: application/json
 }
 
 ### Get Product by ID
-GET http://localhost:3311/products/1
+GET http://localhost:3001/products/1
 
 ### Get Products
-GET http://localhost:3311/products
+GET http://localhost:3001/products
 
 ### Delete Product
-DELETE http://localhost:3311/products/1
+DELETE http://localhost:3001/products/1
 
 ### Update Product
-PUT http://localhost:3311/products/1
+PUT http://localhost:3001/products/1
 Content-Type: application/json
 
 {
