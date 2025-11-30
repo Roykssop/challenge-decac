@@ -47,6 +47,23 @@ export class MysqlProductRepository implements ProductRepository {
     });
   }
 
+  async findAll(): Promise<Product[]> {
+    const [rows] = await this.mysqlProvider.query<RowDataPacket[]>(
+      'SELECT * FROM productos',
+    );
+
+    return rows.map((producto) =>
+      Product.fromPrimitives({
+        id: producto.id,
+        nombre: producto.nombre,
+        descripcion: producto.descripcion,
+        precio: producto.precio,
+        createdAt: producto.created_at,
+        updatedAt: producto.updated_at,
+      }),
+    );
+  }
+
   async existsByNombre(nombre: ProductNombre): Promise<boolean> {
     const [rows] = await this.mysqlProvider.query<RowDataPacket[]>(
       'SELECT 1 FROM productos WHERE nombre = ? LIMIT 1',

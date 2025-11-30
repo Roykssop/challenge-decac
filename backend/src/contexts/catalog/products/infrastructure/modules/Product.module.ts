@@ -6,6 +6,8 @@ import { ProductFinder } from '../../application/ProductFinder';
 import { MysqlProductRepository } from '../persistence/MysqlProduct.repository';
 import { MysqlModule } from 'src/contexts/catalog/shared/infrastructure/persistence/mysql/Mysql.module';
 import { ProductUsdPriceConverter } from '../../application/ProductUsdPriceConverter';
+import { ProductsFinder } from '../../application/ProductsFinder';
+import { ProductGetController } from '../controllers/ProductGet.controller';
 
 const ProductRepository = {
   provide: 'ProductRepository',
@@ -19,7 +21,12 @@ const ProductRepository = {
     ProductFinder,
     ProductRepository,
     ProductUsdPriceConverter,
+    ProductsFinder,
   ],
-  controllers: [ProductPostController, ProductGetByIdController],
+  controllers: [
+    ProductPostController,
+    ProductGetByIdController,
+    ProductGetController,
+  ],
 })
 export class ProductModule { }

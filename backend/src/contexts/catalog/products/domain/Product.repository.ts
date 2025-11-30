@@ -6,5 +6,6 @@ import { ProductNombre } from './ProductNombre';
 export interface ProductRepository {
   save(product: Product): Promise<Product>;
   findById(id: ProductId): Promise<Nullable<Product>>;
+  findAll(): Promise<Product[]>;
   existsByNombre(nombre: ProductNombre): Promise<boolean>;
 }
