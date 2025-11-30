@@ -2,7 +2,6 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
   NotFoundException,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -10,6 +9,7 @@ import { ProductFinder } from '../../application/ProductFinder';
 import { ProductNoEncontradoException } from '../../domain/exceptions/ProductNoEncontradoException.exception';
 import { ProductWithDolarDto } from '../dtos/ProductWithDolarResponse.dto';
 import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions/InvalidArgument.exception';
+import { ParseIntPipeCustomMsg } from 'src/contexts/catalog/shared/infrastructure/pipes/ParseIntPipeCustomMsg.pipe';
 
 @Controller('products')
 export class ProductGetByIdController {
@@ -17,7 +17,7 @@ export class ProductGetByIdController {
 
   @Get(':id')
   async run(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseIntPipeCustomMsg) id: number,
   ): Promise<ProductWithDolarDto> {
     try {
       return await this.productFinder.execute(id);

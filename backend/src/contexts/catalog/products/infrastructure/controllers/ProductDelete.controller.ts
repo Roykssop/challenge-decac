@@ -2,7 +2,6 @@ import {
   Controller,
   Delete,
   Param,
-  ParseIntPipe,
   NotFoundException,
   InternalServerErrorException,
   HttpCode,
@@ -12,6 +11,7 @@ import {
 import { ProductDeleter } from '../../application/ProductDeleter';
 import { ProductNoEncontradoException } from '../../domain/exceptions/ProductNoEncontradoException.exception';
 import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions/InvalidArgument.exception';
+import { ParseIntPipeCustomMsg } from 'src/contexts/catalog/shared/infrastructure/pipes/ParseIntPipeCustomMsg.pipe';
 
 @Controller('products')
 export class ProductDeleteController {
@@ -19,7 +19,7 @@ export class ProductDeleteController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async run(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  async run(@Param('id', ParseIntPipeCustomMsg) id: number): Promise<void> {
     try {
       await this.productDeleter.execute(id);
     } catch (error: unknown) {
