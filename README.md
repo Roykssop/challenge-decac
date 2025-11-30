@@ -74,5 +74,5 @@ El script de inicialización (`db-scripts/init.sql`) realiza las siguientes acci
 ### Backend
 
 - **Servicio**: `backend`
-- **Puerto**: La API se expone en el puerto definido por la variable `API_EXPOSED_PORT` (mapeado al puerto 3300 del contenedor).
+- **Puerto**: La API se expone en el puerto definido por la variable `API_EXPOSED_PORT` (mapeado al puerto 3000 del contenedor).
 - **Dependencias**: Espera a que el servicio `db` esté disponible.
