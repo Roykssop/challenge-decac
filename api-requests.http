@@ -2,10 +2,13 @@ POST http://localhost:3311/products
 Content-Type: application/json
 
 {
-  "nombre": "Producto de Prueba 3",
+  "nombre": "Producto de Prueba 2",
   "descripcion": "Esta es una descripción del producto de prueba.",
-  "precio": 25000.15
+  "precio": 20000
 }
 
 ### Get Product by ID
 GET http://localhost:3311/products/1
+
+### Get Products
+GET http://localhost:3311/products
