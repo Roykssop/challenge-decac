@@ -40,11 +40,9 @@ export class ProductDetailsUpdater {
     fields: ProductPutBodyDto,
   ): Promise<void> {
     if (fields.nombre !== undefined) {
-      if (fields.nombre !== product.toPrimitives().nombre) {
-        const nombre = new ProductNombre(fields.nombre);
-        if (await this.repository.existsByNombre(nombre)) {
-          throw new ProductoNombreExistenteException(fields.nombre);
-        }
+      const nombre = new ProductNombre(fields.nombre);
+      if (await this.repository.existsByNombre(nombre)) {
+        throw new ProductoNombreExistenteException(fields.nombre);
       }
       product.cambiarNombre(new ProductNombre(fields.nombre));
     }
