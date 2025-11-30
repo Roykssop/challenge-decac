@@ -15,8 +15,7 @@ export class ProductCreator {
   async execute(
     productPostBodyDto: ProductPostBodyDto,
   ): Promise<ProductPrimitives> {
-    const nombre = new ProductNombre(productPostBodyDto.nombre);
-    await this.ensureProductoNoExiste(nombre);
+    await this.ensureProductoNoExiste(productPostBodyDto.nombre);
 
     const producto = Product.create(productPostBodyDto);
 
@@ -24,7 +23,8 @@ export class ProductCreator {
     return productGuardado.toPrimitives();
   }
 
-  private async ensureProductoNoExiste(nombre: ProductNombre) {
+  private async ensureProductoNoExiste(nombreProducto: string) {
+    const nombre = new ProductNombre(nombreProducto);
     const exists = await this.repository.existsByNombre(nombre);
     if (exists) {
       throw new ProductoExistenteException(nombre.value);
