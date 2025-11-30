@@ -8,6 +8,8 @@ import { MysqlModule } from 'src/contexts/catalog/shared/infrastructure/persiste
 import { ProductUsdPriceConverter } from '../../application/ProductUsdPriceConverter';
 import { ProductsFinder } from '../../application/ProductsFinder';
 import { ProductGetController } from '../controllers/ProductGet.controller';
+import { ProductDeleter } from '../../application/ProductDeleter';
+import { ProductDeleteController } from '../controllers/ProductDelete.controller';
 
 const ProductRepository = {
   provide: 'ProductRepository',
@@ -22,11 +24,13 @@ const ProductRepository = {
     ProductRepository,
     ProductUsdPriceConverter,
     ProductsFinder,
+    ProductDeleter,
   ],
   controllers: [
     ProductPostController,
     ProductGetByIdController,
     ProductGetController,
+    ProductDeleteController,
   ],
 })
 export class ProductModule { }

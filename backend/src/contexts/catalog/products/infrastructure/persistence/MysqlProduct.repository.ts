@@ -72,4 +72,11 @@ export class MysqlProductRepository implements ProductRepository {
 
     return Boolean(rows.length > 0);
   }
+
+  async delete(id: ProductId): Promise<void> {
+    await this.mysqlProvider.query<ResultSetHeader>(
+      'DELETE FROM productos WHERE id = ?',
+      [id.value],
+    );
+  }
 }
