@@ -12,14 +12,31 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
       - ./db-scripts:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
   backend:
     build: ./backend
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      HOST: db
-      PORT: ${MYSQL_DB_EXPOSED_PORT}
+      MYSQL_HOST: db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      PORT: 3000
     ports:
-      - '${API_EXPOSED_PORT}:3300'
+      - '${API_EXPOSED_PORT}:3000'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: on-failure
 volumes:
   dbdata:
