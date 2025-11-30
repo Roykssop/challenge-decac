@@ -6,7 +6,11 @@ Este proyecto consta de una aplicación backend y una base de datos MySQL, orque
 
 - Docker
 - Docker Compose
-- Archivo `.env` configurado en la raíz del proyecto (basado en las variables utilizadas en `docker-compose.yml`).
+- Archivo `.env`
+
+## Archivo env
+
+Crear un archivo .env con el contenido de env.template
 
 ## Ejecución
 
@@ -26,6 +30,23 @@ Para detener los servicios:
 ```bash
 docker-compose down
 ```
+
+Si se quiere también eliminar los volúmenes
+```bash
+docker-compose down -v
+```
+## API URL
+
+http://localhost:3001/
+
+## Swagger URL
+
+http://localhost:3001/docs
+
+## HTTP file
+
+En raiz de proyecto : api-requests.http
+
 
 ## Detalles de la Infraestructura
 
