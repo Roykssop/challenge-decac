@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '${MYSQL_DB_EXPOSED_PORT}:3306'
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./db-scripts:/docker-entrypoint-initdb.d/
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      HOST: db
+      PORT: ${MYSQL_DB_EXPOSED_PORT}
+    ports:
+      - '${API_EXPOSED_PORT}:3300'
+volumes:
+  dbdata:
