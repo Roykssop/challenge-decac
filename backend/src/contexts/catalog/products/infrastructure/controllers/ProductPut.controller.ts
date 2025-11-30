@@ -18,8 +18,8 @@ import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions
 import { ProductoCamposNoProvistosException } from '../../domain/exceptions/ProductoCamposNoProvistosException';
 import { ProductoNombreExistenteException } from '../../domain/exceptions/ProductoNombreExistenteException';
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('productos')
+@Controller('productos')
 export class ProductPutController {
   constructor(private readonly updater: ProductDetailsUpdater) { }
 

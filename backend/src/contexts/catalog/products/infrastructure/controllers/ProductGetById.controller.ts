@@ -12,8 +12,8 @@ import { ProductWithDolarDto } from '../dtos/ProductWithDolarResponse.dto';
 import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions/InvalidArgument.exception';
 import { ParseIntPipeCustomMsg } from 'src/contexts/catalog/shared/infrastructure/pipes/ParseIntPipeCustomMsg.pipe';
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('productos')
+@Controller('productos')
 export class ProductGetByIdController {
   constructor(private readonly productFinder: ProductFinder) { }
 

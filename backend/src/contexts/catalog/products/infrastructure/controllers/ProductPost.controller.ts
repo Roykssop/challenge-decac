@@ -12,8 +12,8 @@ import { ProductPrimitives } from '../../domain/Product';
 import { ProductoExistenteException } from '../../domain/exceptions/ProductoExistenteException.exception';
 import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions/InvalidArgument.exception';
 
-@ApiTags('products')
-@Controller('products')
+@ApiTags('productos')
+@Controller('productos')
 export class ProductPostController {
   constructor(private readonly creator: ProductCreator) { }
 
