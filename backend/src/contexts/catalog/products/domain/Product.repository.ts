@@ -8,4 +8,5 @@ export interface ProductRepository {
   findById(id: ProductId): Promise<Nullable<Product>>;
   findAll(): Promise<Product[]>;
   existsByNombre(nombre: ProductNombre): Promise<boolean>;
+  delete(id: ProductId): Promise<void>;
 }

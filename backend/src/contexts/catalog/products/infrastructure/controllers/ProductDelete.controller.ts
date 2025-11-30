@@ -1,32 +1,33 @@
 import {
   Controller,
-  Get,
+  Delete,
   Param,
   NotFoundException,
   InternalServerErrorException,
+  HttpCode,
+  HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
-import { ProductFinder } from '../../application/ProductFinder';
+import { ProductDeleter } from '../../application/ProductDeleter';
 import { ProductNoEncontradoException } from '../../domain/exceptions/ProductNoEncontradoException.exception';
-import { ProductWithDolarDto } from '../dtos/ProductWithDolarResponse.dto';
 import { InvalidArgumentException } from 'src/contexts/catalog/shared/exceptions/InvalidArgument.exception';
 import { ParseIntPipeCustomMsg } from 'src/contexts/catalog/shared/infrastructure/pipes/ParseIntPipeCustomMsg.pipe';
 
 @Controller('products')
-export class ProductGetByIdController {
-  constructor(private readonly productFinder: ProductFinder) { }
+export class ProductDeleteController {
+  constructor(private readonly productDeleter: ProductDeleter) { }
 
-  @Get(':id')
-  async run(
-    @Param('id', ParseIntPipeCustomMsg) id: number,
-  ): Promise<ProductWithDolarDto> {
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async run(@Param('id', ParseIntPipeCustomMsg) id: number): Promise<void> {
     try {
-      return await this.productFinder.execute(id);
+      await this.productDeleter.execute(id);
     } catch (error: unknown) {
-      if (
-        error instanceof ProductNoEncontradoException ||
-        error instanceof InvalidArgumentException
-      ) {
+      if (error instanceof ProductNoEncontradoException) {
         throw new NotFoundException(error.message);
+      }
+      if (error instanceof InvalidArgumentException) {
+        throw new BadRequestException(error.message);
       }
 
       throw new InternalServerErrorException(error);
